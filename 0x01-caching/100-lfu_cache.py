@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LFU Caching Module
+LFU Caching Module (Least Frequently Used Cache)
 """
 from collections import defaultdict, OrderedDict
 from base_caching import BaseCaching
