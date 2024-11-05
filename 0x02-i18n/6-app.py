@@ -6,6 +6,7 @@ Supports English and French locales.
 from flask import Flask, render_template, request, g
 from flask_babel import Babel, _
 
+app = Flask(__name__)
 
 # Mock user database
 users = {
@@ -15,36 +16,37 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
-
 class Config:
-    """
-    Configuration class for Flask application.
-    """
-    LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = "en"
-    BABEL_DEFAULT_TIMEZONE = "UTC"
+    LANGUAGES = ['en', 'fr']  # Supported languages
+    BABEL_DEFAULT_LOCALE = 'en'  # Default locale if none is specified
+    BABEL_DEFAULT_TIMEZONE = 'UTC'  # Default timezone
 
-
-app = Flask(__name__)
 app.config.from_object(Config)
 
 babel = Babel(app)
 
-
 @babel.localeselector
 def get_locale() -> str:
     """
-    Determines the best match for supported languages based on the
-    Accept-Language headers in the incoming request.
+    Select the best locale for the user based on a prioritized order.
+    
+    The order of priority is:
+    1. Locale from URL parameters
+    2. Locale from user settings
+    3. Locale from request header
+    4. Default locale
     """
-    # Get the 'locale' parameter from the request
+    # Check for a locale in the URL parameters
     locale = request.args.get('locale')
-    # Check if the locale is supported (i.e., 'en' or 'fr')
-    if locale and locale in app.config['LANGUAGES']:
+    if locale in app.config['LANGUAGES']:
         return locale
-    # Fall back to the default behavior
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
+    # Check for a user's preferred locale if logged in
+    if g.user and g.user['locale'] in app.config['LANGUAGES']:
+        return g.user['locale']
+
+    # Fallback to the best match from the request header
+    return request.accept_languages.best_match(app.config['LANGUAGES']) or app.config['BABEL_DEFAULT_LOCALE']
 
 def get_user() -> dict:
     """
@@ -56,7 +58,6 @@ def get_user() -> dict:
         return users.get(user_id)
     return None
 
-
 @app.before_request
 def before_request() -> None:
     """
@@ -65,14 +66,13 @@ def before_request() -> None:
     """
     g.user = get_user()
 
-
-@app.route("/")
+@app.route('/')
 def index() -> str:
     """
-    Renders the index page with a welcome message.
+    Render the index page with a welcome message.
+    Displays a message based on the user's login status.
     """
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
