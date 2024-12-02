@@ -131,3 +131,17 @@ To ensure your application is functioning correctly, you can use manual testing 
 
 **Expected Output:**
 - The hash values are stored successfully, and the displayed object matches the stored values.
+
+### Task 5: Node Redis client publisher and subscriber
+
+in the file `5-subscriber.js`
+1. Create a Redis client.
+2. Log: `"Redis client connected to the server"` on connect, and `"Redis client not connected to the server: ERROR_MESSAGE"` on error.
+3. Subscribe to `holberton school channel`.
+4. Log received messages. If the message is `"KILL_SERVER"`, unsubscribe and quit.
+
+In the file `5-publisher.js`
+1. Create a Redis client.
+2. Log: `"Redis client connected to the server"` on connect, and `"Redis client not connected to the server: ERROR_MESSAGE"` on error.
+3. Define `publishMessage(message, time)`:
+    - After `time` ms, log `"About to send MESSAGE"` and publish to `holberton school channel`.
