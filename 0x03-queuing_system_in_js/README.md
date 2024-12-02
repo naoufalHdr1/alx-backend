@@ -145,3 +145,13 @@ In the file `5-publisher.js`
 2. Log: `"Redis client connected to the server"` on connect, and `"Redis client not connected to the server: ERROR_MESSAGE"` on error.
 3. Define `publishMessage(message, time)`:
     - After `time` ms, log `"About to send MESSAGE"` and publish to `holberton school channel`.
+
+### Task 6: Create the Job creator
+
+- Sets up a `push_notification_code` queue with Kue.
+- Defines `sendNotification(phoneNumber, message)` to log notification details.
+- Processes jobs by calling `sendNotification` with job data.
+- Works with `6-job_creator.js` to handle notifications concurrently.
+
+**Purpose:**
+- Efficient background job handling for notifications.
