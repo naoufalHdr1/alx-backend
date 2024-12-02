@@ -113,3 +113,21 @@ To ensure your application is functioning correctly, you can use manual testing 
 
 **Expected Behavior:**
 - The code should still display the school values, set a new value, and log the results, but now using `async/await` for asynchronous operations.
+
+### Task 4: Node Redis client and advanced operations
+
+1. Create a new file named `4-redis_advanced_op.js`.
+2. Create Hash:
+    - Use `hset` to store the following key-value pairs in a hash with the key `HolbertonSchools`:
+        - Portland=50
+        - Seattle=80
+        - New York=20
+        - Bogota=20
+        - Cali=40
+        - Paris=2
+    - Use redis.print to confirm each hset operation.
+3. Display Hash:
+    - Use hgetall to retrieve and display the entire hash stored in Redis.
+
+**Expected Output:**
+- The hash values are stored successfully, and the displayed object matches the stored values.
