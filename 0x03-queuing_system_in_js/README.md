@@ -203,3 +203,12 @@ In the file `5-publisher.js`
 - Completion: Logs `Notification job JOB_ID completed`.
 - Failure: Logs `Notification job JOB_ID failed: ERROR`.
 - Progress: Logs `Notification job JOB_ID PERCENT% complete`.
+
+### Task 11: Writing the test for job creation
+
+- **Objective**: Validate `createPushNotificationsJobs` functionality using Kue's test mode.
+- **Key Tests**:
+1. Input Validation: Ensure non-array arguments throw errors.
+2. Job Addition: Confirm correct jobs are added to the queue.
+3. Event Logs: Simulate job events (`complete`, `failed`, `progress`) and check log outputs.
+- **Setup & Cleanup**: Enter test mode, clear the queue after each test, and exit test mode upon completion.
