@@ -177,3 +177,17 @@ In the file `5-publisher.js`
 
 **Purpose:**
 - Bulk job creation and monitoring for notifications.
+
+### Task 9: Track progress and errors with Kue: Create the Job processor
+
+1. Blacklist:
+- Includes `4153518780` and `4153518781`.
+2. sendNotification Function:
+- Tracks job progress (0%, 50%, complete).
+- Fails if the phone number is blacklisted.
+3. Queue:
+- Processes `push_notification_code_2` with 2 jobs concurrently.
+
+**Logs:**
+- Success: `Sending notification to PHONE_NUMBER, with message: MESSAGE`.
+- Failure: `Notification job #ID failed: Phone number PHONE_NUMBER is blacklisted`.
