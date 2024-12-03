@@ -155,3 +155,25 @@ In the file `5-publisher.js`
 
 **Purpose:**
 - Efficient background job handling for notifications.
+
+### Task 7: Create the Job processor
+
+1. Setup:
+- Creates Kue queue `push_notification_code`.
+- Defines `sendNotification(phoneNumber, message)`.
+2. Processing:
+- Listens on the queue and logs notifications.
+3. Logs:
+- Creator: `Notification job created: JOB_ID`.
+- Processor: `Sending notification to PHONE_NUMBER, with message: MESSAGE`.
+
+### Task 8: Track progress and errors with Kue: Create the Job creator
+
+- **Data Setup:** Defines an array `jobs` with phone numbers and verification messages.
+- **Queue Creation:** Initializes the `push_notification_code_2` queue with Kue.
+- **Job Handling:**
+    - Iterates through `jobs` to create a new job for each item in the array.
+    - Logs messages for each job lifecycle
+
+**Purpose:**
+- Bulk job creation and monitoring for notifications.
