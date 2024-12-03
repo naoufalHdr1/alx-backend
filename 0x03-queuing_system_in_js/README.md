@@ -191,3 +191,15 @@ In the file `5-publisher.js`
 **Logs:**
 - Success: `Sending notification to PHONE_NUMBER, with message: MESSAGE`.
 - Failure: `Notification job #ID failed: Phone number PHONE_NUMBER is blacklisted`.
+
+### Task 10: Writing the job creation function
+
+1. `createPushNotificationsJobs(jobs, queue)`
+- Validates if `jobs` is an array.
+    - Throws `Error`: Jobs is not an array if validation fails.
+- Iterates through `jobs` to create tasks in the `push_notification_code_3` queue.
+2. Event Logs:
+- Job Creation: Logs `Notification job created: JOB_ID`.
+- Completion: Logs `Notification job JOB_ID completed`.
+- Failure: Logs `Notification job JOB_ID failed: ERROR`.
+- Progress: Logs `Notification job JOB_ID PERCENT% complete`.
