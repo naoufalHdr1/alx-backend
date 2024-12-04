@@ -212,3 +212,19 @@ In the file `5-publisher.js`
 2. Job Addition: Confirm correct jobs are added to the queue.
 3. Event Logs: Simulate job events (`complete`, `failed`, `progress`) and check log outputs.
 - **Setup & Cleanup**: Enter test mode, clear the queue after each test, and exit test mode upon completion.
+
+
+### Task 12: In stock?
+
+1. Setup:
+- Define a `listProducts` array with product details.
+2. Server:
+- Create an Express server on port 1245.
+3. Routes:
+- **GET /list_products:** Return all products.
+- **GET /list_products/:itemId:** Return product details with stock or `Product not found`.
+- **GET /reserve_product/:itemId:** Reserve stock if available or return errors.
+4. Redis:
+- Track stock with `reserveStockById` and `getCurrentReservedStockById`.
+5. Requirements:
+- Use `promisify`, `async/await`, and ensure JSON responses.
